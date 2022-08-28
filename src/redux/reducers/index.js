@@ -32,10 +32,10 @@ function rootReducer(state = initialState, action) {
       const copy = [...state.pokes];
       const bySource =
         action.payload === "MIXED"
-          ? copy
+          ? state.pokes
           : action.payload === "DB"
-          ? state.pokes.filter((el) => el.id.length > 2)
-          : state.allPokes.filter((el) => el.id <= 40);
+          ? copy.filter((el) => el.createdInDB)
+          : copy.filter((el) => !el.createdInDB);
       return {
         ...state,
         allPokes: bySource,
@@ -44,7 +44,7 @@ function rootReducer(state = initialState, action) {
       const falsePoke = [...state.pokes];
       const sortATK =
         action.payload === "LOW"
-          ? state.allPokes.sort((a, b) => {
+          ? state.allPokes.slice().sort((a, b) => {
               if (a.attack > b.attack) {
                 return 1;
               }
@@ -54,7 +54,7 @@ function rootReducer(state = initialState, action) {
               return 0;
             })
           : action.payload === "HI"
-          ? state.allPokes.sort((a, b) => {
+          ? state.allPokes.slice().sort((a, b) => {
               if (a.attack > b.attack) {
                 return -1;
               }
@@ -71,7 +71,7 @@ function rootReducer(state = initialState, action) {
     case "SORT_POKENAME":
       const sorted =
         action.payload === "ASC"
-          ? state.pokes.sort((a, b) => {
+          ? state.pokes.slice().sort((a, b) => {
               if (a.name > b.name) {
                 return 1;
               }
@@ -81,7 +81,7 @@ function rootReducer(state = initialState, action) {
               return 0;
             })
           : action.payload === "DSC"
-          ? state.pokes.sort((a, b) => {
+          ? state.pokes.slice().sort((a, b) => {
               if (a.name > b.name) {
                 return -1;
               }
@@ -96,10 +96,11 @@ function rootReducer(state = initialState, action) {
         allPokes: sorted,
       };
     case "FILTER_TYPES":
+      const copeePokes = [...state.allPokes];
       const filteredByType =
         action.payload === "ALL"
-          ? state.allPokes
-          : state.allPokes.filter((element) =>
+          ? copeePokes
+          : state.pokes.filter((element) =>
               element.types.includes(action.payload)
             );
       return {
