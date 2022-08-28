@@ -89,6 +89,11 @@ export function orderByAtk(payload) {
     payload,
   };
 }
+export function clear() {
+  return {
+    type: "CLEAR",
+  };
+}
 export function deleteById(id) {
   return async function (dispatch) {
     try {

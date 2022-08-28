@@ -114,6 +114,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "CLEAR":
+      return {
+        ...state,
+        pokeDetail: {},
+      };
     default:
       return {
         ...state,
