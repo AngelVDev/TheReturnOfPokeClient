@@ -43,9 +43,9 @@ const Details = ({ match }) => {
           {poke.types ? (
             <p className="types" alt="types">
               <b>Types: </b>
-              {poke.types?.map((e) => (
-                <span>{e}</span>
-              ))}
+              {regex.test(poke.id) === true
+                ? poke.types.map((e) => <span>{e.name}</span>)
+                : poke.types.map((e) => <span>{e}</span>)}
             </p>
           ) : null}
           <p id="pkHP" alt="HP">
