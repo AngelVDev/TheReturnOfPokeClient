@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Card from "../components/Cards";
 // import Header from "../components/Header";
-import Loader from "../components/Loader";
+import Loader from "./Loader";
 import Pagination from "../components/Pagination";
 
 const Home = () => {
