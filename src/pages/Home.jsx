@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Card from "../components/Cards";
-// import Header from "../components/Header";
+import Header from "../components/Header";
 import Loader from "./Loader";
 import Pagination from "../components/Pagination";
 
@@ -19,7 +19,7 @@ const Home = () => {
   if (pokes) {
     return (
       <div className="homeDiv">
-        {/* <Header setCurrentPage={setCurrentPage} /> */}
+        <Header setCurrentPage={setCurrentPage} />
         <Pagination
           pokes={pokes}
           pokesPerPage={pokesPerPage}
