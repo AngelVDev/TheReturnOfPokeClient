@@ -1,0 +1,46 @@
+.card img {
+  display: block;
+  max-width: 70%;
+  height: auto;
+  z-index: 1;
+}
+.card {
+  box-shadow: 0 0px 30px 1px rgba(247, 36, 152, 0.473);
+  position: relative;
+  display: flex;
+  border-radius: 8px;
+  align-items: center;
+  margin-left: 1.4em;
+  margin-top: 3em;
+  height: 30vh;
+  width: 25vw;
+  padding: 1.4rem;
+  text-decoration: none;
+}
+.cardInfo p {
+  font-size: 1.5rem;
+  z-index: -1;
+  text-decoration: none;
+}
+.cardInfo h2 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif, cursive;
+  display: inline-block;
+  position: absolute;
+  font-size: 1.4rem;
+  color: #344055;
+  margin: 0;
+  z-index: 0;
+  text-decoration: none;
+}
+.cardInfo h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif, cursive;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  font-size: 9rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+  z-index: 0;
+  text-decoration: none;
+}
