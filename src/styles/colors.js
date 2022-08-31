@@ -1,4 +1,4 @@
-export const color = {
+const color = {
   normal: "#A8A878",
   fighting: "#C03028",
   flying: "#A890F0",
@@ -20,3 +20,4 @@ export const color = {
   unknown: "#219ebc",
   shadow: "#9d8189",
 };
+export default color;
