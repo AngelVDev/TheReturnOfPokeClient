@@ -10,13 +10,10 @@ export let missingno =
 
 const Cards = ({ currentPokes }) => {
   const regex = new RegExp("[a-z]");
-  const comesFromDb = (item) => {
-    regex.test(item);
-  };
   const dispatch = useDispatch();
-  const bGcolour = (poketype) => {
-    if (colors.hasOwnProperty(poketype)) {
-      return { backgroundColor: colors[poketype] };
+  const bGcolour = (poketypen) => {
+    if (colors.hasOwnProperty(poketypen)) {
+      return { backgroundColor: colors[poketypen] };
     }
   };
   useEffect(() => {
@@ -30,30 +27,35 @@ const Cards = ({ currentPokes }) => {
             className="card"
             key={p.id}
             style={bGcolour(
-              comesFromDb(p.id) === true ? p.types[0].name : p.types[0]
+              regex.test(p.id) === true ? p.types[0].name : p.types[0]
             )}
           >
-            <div className="cardInfo">
-              <h1>#{comesFromDb(p.id) === true ? "DB" : p.id}</h1>
+            <div className="cardInfo" key={p.id + "info"}>
+              <h1>#{regex.test(p.id) === true ? "DB" : p.id}</h1>
               <Link
-                style={{ textDecoration: "none", color: "black" }}
                 to={"/details/" + p.id}
+                style={{ textDecoration: "none", color: "black" }}
               >
                 <h2>{p.name}</h2>
               </Link>
             </div>
-            {comesFromDb(p.id) === true
+            {console.log(p.id)}
+            {regex.test(p.id) === true
               ? p?.types.map((t) => (
                   <span
                     className="typeSpan"
-                    style={bGcolour(t.name)}
-                    key={t.name + p.id + "DB"}
+                    style={bGcolour(t?.name)}
+                    key={p.id + "typenFromDB"}
                   >
                     {t.name}
                   </span>
                 ))
               : p?.types.map((t) => (
-                  <span className="typeSpan" style={bGcolour(t)} key={t + p.id}>
+                  <span
+                    className="typeSpan"
+                    style={bGcolour(t)}
+                    key={t + Math.random()}
+                  >
                     {t}
                   </span>
                 ))}
