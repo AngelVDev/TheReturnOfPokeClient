@@ -1,7 +1,8 @@
 .card img {
   display: block;
-  max-width: 70%;
+  max-width: 20vw;
   height: auto;
+  margin: 11vh 0 0 5vw;
   z-index: 1;
 }
 .card {
@@ -17,6 +18,9 @@
   padding: 1.4rem;
   text-decoration: none;
 }
+.cardInfo {
+  display: contents;
+}
 .cardInfo p {
   font-size: 1.5rem;
   z-index: -1;
@@ -24,7 +28,6 @@
 }
 .cardInfo h2 {
   font-family: Verdana, Geneva, Tahoma, sans-serif, cursive;
-  display: inline-block;
   position: absolute;
   font-size: 1.4rem;
   color: #344055;
