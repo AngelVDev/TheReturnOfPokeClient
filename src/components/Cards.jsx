@@ -23,13 +23,7 @@ const Cards = ({ currentPokes }) => {
     return (
       <>
         {currentPokes?.map((p) => (
-          <div
-            className="card"
-            key={p.id}
-            style={bGcolour(
-              regex.test(p.id) === true ? p.types[0].name : p.types[0]
-            )}
-          >
+          <div className="card" key={p.id} style={bGcolour(p.types[0].name)}>
             <div className="cardInfo" key={p.id + "info"}>
               <h1>#{regex.test(p.id) === true ? "DB" : p.id}</h1>
               <Link
@@ -39,26 +33,15 @@ const Cards = ({ currentPokes }) => {
                 <h2>{p.name}</h2>
               </Link>
             </div>
-            {console.log(p.id)}
-            {regex.test(p.id) === true
-              ? p?.types.map((t) => (
-                  <span
-                    className="typeSpan"
-                    style={bGcolour(t?.name)}
-                    key={p.id + "typenFromDB"}
-                  >
-                    {t.name}
-                  </span>
-                ))
-              : p?.types.map((t) => (
-                  <span
-                    className="typeSpan"
-                    style={bGcolour(t)}
-                    key={t + Math.random()}
-                  >
-                    {t}
-                  </span>
-                ))}
+            {p.types.map((t) => (
+              <span
+                key={p.id + Math.random() + "typen"}
+                className="typeSpan"
+                style={bGcolour(t.name)}
+              >
+                {t.name}
+              </span>
+            ))}
             <img src={p.image ? p.image : missingno} alt="cardimgerror" />
           </div>
         ))}

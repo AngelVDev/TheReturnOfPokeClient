@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Loader from "./Loader";
 import { clear, deleteById, getDetails } from "../redux/actions";
+import { missingno } from "../components/Cards";
 // import "../styles/pages.css";
 
 const Details = ({ match }) => {
@@ -23,49 +24,52 @@ const Details = ({ match }) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    dispatch(deleteById(id));
-    alert(poke.name + " deleted from DB");
-    history.push("/home");
+    if (poke.length) {
+      dispatch(deleteById(id));
+      alert(poke.name + " deleted from DB");
+      history.push("/home");
+    } else {
+      alert("There's no poke to delete, pal");
+    }
   };
-  console.log(poke);
 
   if (poke) {
     return (
       <div className="detailContainer">
         <h1>Detailed Info</h1>
-        <h2 className="nameDetail">{poke.name}</h2>
+        <h2 className="nameDetail">
+          {poke.id === 7 ? "VAMO A CALMARNO" : poke.name}
+        </h2>
         <img
           className="pokePik"
-          src={poke.image ? poke.image : null}
+          src={poke.image ? poke.image : missingno}
           alt="pokemon"
         />
         <div className="infoDetail">
-          {poke.types ? (
+          {poke.types && (
             <p className="types" alt="types">
               <b>Types: </b>
-              {regex.test(poke.id) === true
-                ? poke.types.map((e) => (
-                    <span key={poke.id + e.name}>{e.name}</span>
-                  ))
-                : poke.types.map((e) => <span key={poke.id + e}>{e}</span>)}
+              {poke.types.map((e) => (
+                <span key={poke.id + e.name}>{e.name}</span>
+              ))}
             </p>
-          ) : null}
-          <p id="pkHP" alt="HP">
+          )}
+          <p classname="pokestat" alt="HP">
             Health points: {poke.HP ? poke.HP : "178"}
           </p>
-          <p id="pkATK" alt="ATK">
+          <p classname="pokestat" alt="ATK">
             Attack: {poke.attack ? poke.attack : "19"}{" "}
           </p>
-          <p id="pkDEF" alt="DEF">
+          <p classname="pokestat" alt="DEF">
             Defense: {poke.defense ? poke.defense : "11"}{" "}
           </p>
-          <p id="pkSPD" alt="SPD">
+          <p classname="pokestat" alt="SPD">
             Speed: {poke.speed ? poke.speed : "0"}{" "}
           </p>
-          <p id="pkH" alt="Height">
+          <p classname="pokestat" alt="Height">
             Height: {poke.height ? poke.height : "3.04"}
           </p>
-          <p id="pkW" alt="Weight">
+          <p classname="pokestat" alt="Weight">
             Weight: {poke.weight ? poke.weight : "1590.8"}
           </p>
         </div>
