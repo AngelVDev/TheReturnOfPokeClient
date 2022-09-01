@@ -103,7 +103,7 @@ const Creator = () => {
               className="inputStyle"
               onChange={(e) => handleChange(e)}
               name="name"
-              //   value={input.name}
+              value={input.name}
               type="text"
             />
             {error.name && <p className="error">{error.name} </p>}
@@ -112,7 +112,7 @@ const Creator = () => {
             HP:
             <input
               type="number"
-              //   value={input.HP}
+              value={input.HP}
               name="HP"
               onChange={(e) => handleChange(e)}
             />
@@ -123,7 +123,7 @@ const Creator = () => {
             Attack:
             <input
               type="number"
-              //   value={input.attack}
+              value={input.attack}
               name="attack"
               onChange={(e) => handleChange(e)}
             />
@@ -134,7 +134,7 @@ const Creator = () => {
             Height:
             <input
               type="number"
-              //   value={input.height}
+              value={input.height}
               name="height"
               onChange={(e) => handleChange(e)}
             />
