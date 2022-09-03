@@ -32,10 +32,10 @@ function rootReducer(state = initialState, action) {
       const copy = [...state.pokes];
       const bySource =
         action.payload === "MIXED"
-          ? state.pokes
+          ? copy
           : action.payload === "DB"
-          ? copy.filter((el) => el.createdInDB)
-          : copy.filter((el) => !el.createdInDB);
+          ? state.pokes.filter((el) => el.createdInDb)
+          : state.pokes.filter((el) => !el.createdInDb);
       return {
         ...state,
         allPokes: bySource,
@@ -44,7 +44,7 @@ function rootReducer(state = initialState, action) {
       const falsePoke = [...state.pokes];
       const sortATK =
         action.payload === "LOW"
-          ? state.allPokes.slice().sort((a, b) => {
+          ? state.pokes.slice().sort((a, b) => {
               if (a.attack > b.attack) {
                 return 1;
               }
@@ -54,7 +54,7 @@ function rootReducer(state = initialState, action) {
               return 0;
             })
           : action.payload === "HI"
-          ? state.allPokes.slice().sort((a, b) => {
+          ? state.pokes.slice().sort((a, b) => {
               if (a.attack > b.attack) {
                 return -1;
               }
@@ -90,18 +90,19 @@ function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : state.allPokes;
+          : state.pokes;
       return {
         ...state,
         allPokes: sorted,
       };
     case "FILTER_TYPES":
-      const copeePokes = [...state.allPokes];
+      const copeePokes = [...state.pokes];
+
       const filteredByType =
         action.payload === "ALL"
           ? copeePokes
-          : state.pokes.filter((element) =>
-              element.types.includes(action.payload)
+          : state.pokes.filter((pk) =>
+              pk.types.find((t) => t.name === action.payload)
             );
       return {
         ...state,
