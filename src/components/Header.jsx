@@ -76,7 +76,12 @@ const Header = ({ setCurrentPage }) => {
       <label className="headerLabel">
         Filter by TYPE
         <select className="headerSelect" onChange={(e) => handleFilterType(e)}>
-          <option value="ALL">All</option>
+          {types.length ? (
+            <option value="ALL">ALL</option>
+          ) : (
+            <option value={null}>Loading...</option>
+          )}
+
           {types &&
             types?.map((type) => {
               return (
