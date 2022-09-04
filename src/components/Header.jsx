@@ -10,11 +10,17 @@ import {
   orderByAtk,
   orderByName,
 } from "../redux/actions";
-// import "../styles/components.css";
+import colors from "../styles/colors";
+import "../styles/components.css";
 
 const Header = ({ setCurrentPage }) => {
   const types = useSelector((state) => state.types);
   const dispatch = useDispatch();
+  const bGcolour = (poketypen) => {
+    if (colors.hasOwnProperty(poketypen)) {
+      return { backgroundColor: colors[poketypen] };
+    }
+  };
 
   const handleOrderName = (e) => {
     e.preventDefault();
@@ -48,7 +54,7 @@ const Header = ({ setCurrentPage }) => {
   return (
     <div className="filterContainer">
       <button className="create">
-        <Link style={{ textDecoration: "none" }} to="/create">
+        <Link style={{ textDecoration: "none", color: "white" }} to="/create">
           {" "}
           CREATE
         </Link>
@@ -81,11 +87,14 @@ const Header = ({ setCurrentPage }) => {
           ) : (
             <option value={null}>Loading...</option>
           )}
-
           {types &&
             types?.map((type) => {
               return (
-                <option key={type.id} value={type.name}>
+                <option
+                  key={type.id}
+                  value={type.name}
+                  style={bGcolour(type.name)}
+                >
                   {type.name}
                 </option>
               );

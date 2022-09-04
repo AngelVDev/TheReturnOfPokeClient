@@ -1,9 +1,7 @@
-.card img {
-  display: block;
-  max-width: 20vw;
-  height: auto;
-  margin: 11vh 0 0 5vw;
-  z-index: 1;
+.card > img {
+  object-fit: contain;
+  width: 260px;
+  margin: 10vh 0 0 3vw;
 }
 .card {
   box-shadow: 0 0px 30px 1px rgba(247, 36, 152, 0.473);
@@ -20,28 +18,28 @@
 }
 .cardInfo {
   display: contents;
+  z-index: 0;
 }
-.cardInfo p {
+.cardInfo > p {
   font-size: 1.5rem;
   z-index: -1;
   text-decoration: none;
 }
-.cardInfo h2 {
+.cardInfo > h2 {
   font-family: Verdana, Geneva, Tahoma, sans-serif, cursive;
   position: absolute;
-  font-size: 1.4rem;
   color: #344055;
   margin: 0;
-  z-index: 0;
+  z-index: -1;
   text-decoration: none;
 }
-.cardInfo h1 {
+.cardInfo > h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif, cursive;
   display: flex;
   position: absolute;
   align-items: center;
   justify-content: center;
-  font-size: 9rem;
+  font-size: 6.8rem;
   color: rgba(255, 255, 255, 0.4);
   margin: 0;
   z-index: 0;
@@ -52,4 +50,35 @@
   padding: 0.3vw;
   border-top-color: white;
   border-bottom-color: #344055;
+}
+.filterContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 130px;
+  width: 100%;
+}
+
+.headerSelect {
+  border-radius: 6px;
+  color: black;
+  font-size: large;
+  margin-left: 0.4vw;
+  font-weight: 900;
+  font-family: "Power Green";
+  height: 4.5vh;
+  width: 6vw;
+  text-decoration: none;
+}
+.create {
+  border-radius: 8px;
+  font-family: "Power Green";
+  font-size: large;
+  font-weight: 900;
+  height: 4.5vh;
+  width: 6vw;
+  background-color: #d83d3d;
+  display: block;
 }

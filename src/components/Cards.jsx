@@ -28,7 +28,7 @@ const Cards = ({ currentPokes }) => {
               <h1>#{regex.test(p.id) === true ? "DB" : p.id}</h1>
               <Link
                 to={"/details/" + p.id}
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: "none", color: "black", zIndex: "2" }}
               >
                 <h2>{p.name}</h2>
               </Link>
