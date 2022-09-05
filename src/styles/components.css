@@ -2,19 +2,24 @@
   object-fit: contain;
   width: 260px;
   margin: 10vh 0 0 3vw;
+  z-index: 1;
 }
+
 .card {
-  box-shadow: 0 0px 30px 1px rgba(247, 36, 152, 0.473);
+  box-shadow: 0 0px 30px 1px rgb(247 36 152 / 47%);
   position: relative;
   display: flex;
   border-radius: 8px;
-  align-items: center;
   margin-left: 1.4em;
   margin-top: 3em;
   height: 30vh;
   width: 25vw;
   padding: 1.4rem;
   text-decoration: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 7px double rgba(255, 255, 255, 0.19);
 }
 .cardInfo {
   display: contents;
@@ -27,7 +32,6 @@
 }
 .cardInfo > h2 {
   font-family: Verdana, Geneva, Tahoma, sans-serif, cursive;
-  position: absolute;
   color: #344055;
   margin: 0;
   z-index: -1;
@@ -48,8 +52,12 @@
 .typeSpan {
   border-radius: 3px;
   padding: 0.3vw;
-  border-top-color: white;
-  border-bottom-color: #344055;
+  border: 1px solid #dfdfdf86;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0px 0px 3px #dfdfdf86;
+  z-index: 1;
+  margin: 0.3vw;
 }
 .filterContainer {
   display: flex;
@@ -59,6 +67,9 @@
   align-items: center;
   height: 130px;
   width: 100%;
+  background-color: #9d75d1;
+  border-radius: 0 8vw 0 8vw;
+  border: 6px double rgb(134, 81, 184);
 }
 
 .headerSelect {
@@ -80,5 +91,19 @@
   height: 4.5vh;
   width: 6vw;
   background-color: #d83d3d;
+  display: block;
+}
+.searchInput {
+  size: 4;
+}
+.searchButton {
+  border-radius: 8px;
+  font-family: "Power Green";
+  font-size: large;
+  color: aliceblue;
+  font-weight: 900;
+  height: 4vh;
+  width: 5vw;
+  background-color: #3d3fd8;
   display: block;
 }

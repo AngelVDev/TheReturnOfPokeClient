@@ -42,11 +42,11 @@ const Header = ({ setCurrentPage }) => {
     setCurrentPage(1);
     dispatch(showCreated(e.target.value));
   };
-  const handleReset = (e) => {
-    e.preventDefault();
-    setCurrentPage(1);
-    dispatch(getPokemons());
-  };
+  // const handleReset = (e) => {
+  //   e.preventDefault();
+  //   setCurrentPage(1);
+  //   dispatch(getPokemons());
+  // };
   useEffect(() => {
     dispatch(getPokemons());
     dispatch(getTypes());
@@ -60,9 +60,9 @@ const Header = ({ setCurrentPage }) => {
         </Link>
       </button>
       <Searchbar />
-      <button className="reset" onClick={(e) => handleReset(e)}>
+      {/* <button className="reset" onClick={(e) => handleReset(e)}>
         RESET
-      </button>
+      </button> */}
       <label className="headerLabel">
         Sort by name
         <select className="headerSelect" onChange={(e) => handleOrderName(e)}>
@@ -95,7 +95,7 @@ const Header = ({ setCurrentPage }) => {
                   value={type.name}
                   style={bGcolour(type.name)}
                 >
-                  {type.name}
+                  {type.name.toUpperCase()}
                 </option>
               );
             })}

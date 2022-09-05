@@ -39,7 +39,7 @@ const Cards = ({ currentPokes }) => {
                 className="typeSpan"
                 style={bGcolour(t.name)}
               >
-                {t.name}
+                {t.name.toUpperCase()}
               </span>
             ))}
             <img src={p.image ? p.image : missingno} alt="cardimgerror" />
