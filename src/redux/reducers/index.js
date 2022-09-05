@@ -68,6 +68,62 @@ function rootReducer(state = initialState, action) {
         ...state,
         allPokes: sortATK,
       };
+    case "SORT_POKEDEF":
+      const defCopyPoke = [...state.pokes];
+      const sortDEF =
+        action.payload === "LOW"
+          ? state.pokes.slice().sort((a, b) => {
+              if (a.defense > b.defense) {
+                return 1;
+              }
+              if (b.defense > a.defense) {
+                return -1;
+              }
+              return 0;
+            })
+          : action.payload === "HI"
+          ? state.pokes.slice().sort((a, b) => {
+              if (a.defense > b.defense) {
+                return -1;
+              }
+              if (a.defense > b.defense) {
+                return 1;
+              }
+              return 0;
+            })
+          : defCopyPoke;
+      return {
+        ...state,
+        allPokes: sortDEF,
+      };
+    case "SORT_POKESPD":
+      const spdCopyPoke = [...state.pokes];
+      const sortSPD =
+        action.payload === "LOW"
+          ? state.pokes.slice().sort((a, b) => {
+              if (a.speed > b.speed) {
+                return 1;
+              }
+              if (b.speed > a.speed) {
+                return -1;
+              }
+              return 0;
+            })
+          : action.payload === "HI"
+          ? state.pokes.slice().sort((a, b) => {
+              if (a.speed > b.speed) {
+                return -1;
+              }
+              if (a.speed > b.speed) {
+                return 1;
+              }
+              return 0;
+            })
+          : spdCopyPoke;
+      return {
+        ...state,
+        allPokes: sortSPD,
+      };
     case "SORT_POKENAME":
       const sorted =
         action.payload === "ASC"
