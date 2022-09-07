@@ -28,20 +28,30 @@ const Cards = ({ currentPokes }) => {
               <h1>#{regex.test(p.id) === true ? "DB" : p.id}</h1>
               <Link
                 to={"/details/" + p.id}
-                style={{ textDecoration: "none", color: "black", zIndex: "2" }}
+                style={{
+                  textDecoration: "none",
+                  color: "#e3e3e3",
+                  zIndex: "2",
+                  fontSize: "x-large",
+                  position: "absolute",
+                  marginRight: "16.7vw",
+                  marginBottom: "28.4vh",
+                }}
               >
                 <h2>{p.name}</h2>
               </Link>
+              <p className="statCard">ATK {p.attack}</p>
+              <p className="statCard">DEF {p.defense}</p>
+              {p.types.map((t) => (
+                <span
+                  key={p.id + Math.random() + "typen"}
+                  className="typeSpan"
+                  style={bGcolour(t.name)}
+                >
+                  {t.name.toUpperCase()}
+                </span>
+              ))}
             </div>
-            {p.types.map((t) => (
-              <span
-                key={p.id + Math.random() + "typen"}
-                className="typeSpan"
-                style={bGcolour(t.name)}
-              >
-                {t.name.toUpperCase()}
-              </span>
-            ))}
             <img src={p.image ? p.image : missingno} alt="cardimgerror" />
           </div>
         ))}
