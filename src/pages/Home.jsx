@@ -4,6 +4,7 @@ import Card from "../components/Cards";
 import Header from "../components/Header";
 import Loader from "./Loader";
 import Pagination from "../components/Pagination";
+import "../styles/pages.css";
 
 const Home = () => {
   const pokes = useSelector((state) => state.allPokes);
