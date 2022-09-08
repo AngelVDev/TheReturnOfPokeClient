@@ -50,26 +50,28 @@ const Details = ({ match }) => {
             <p className="types" alt="types">
               <b>Types: </b>
               {poke.types.map((e) => (
-                <span key={poke.id + e.name}>{e.name}</span>
+                <span className="typeSpan" key={poke.id + e.name}>
+                  {e.name}
+                </span>
               ))}
             </p>
           )}
-          <p classname="pokestat" alt="HP">
+          <p className="pokestat" alt="HP">
             Health points: {poke.HP ? poke.HP : "178"}
           </p>
-          <p classname="pokestat" alt="ATK">
+          <p className="pokestat" alt="ATK">
             Attack: {poke.attack ? poke.attack : "19"}{" "}
           </p>
-          <p classname="pokestat" alt="DEF">
+          <p className="pokestat" alt="DEF">
             Defense: {poke.defense ? poke.defense : "11"}{" "}
           </p>
-          <p classname="pokestat" alt="SPD">
+          <p className="pokestat" alt="SPD">
             Speed: {poke.speed ? poke.speed : "0"}{" "}
           </p>
-          <p classname="pokestat" alt="Height">
+          <p className="pokestat" alt="Height">
             Height: {poke.height ? poke.height : "3.04"}
           </p>
-          <p classname="pokestat" alt="Weight">
+          <p className="pokestat" alt="Weight">
             Weight: {poke.weight ? poke.weight : "1590.8"}
           </p>
         </div>
