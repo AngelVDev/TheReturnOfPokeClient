@@ -3,6 +3,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createPoke, getTypes } from "../redux/actions";
 
+function validateForms(input) {
+  let error = {};
+  if (!input.name || input.name.length < 1) {
+    error.name = "Name required";
+  }
+  if (input.HP < 1 || input.HP > 999 || !input.HP) {
+    error.HP = "HP must be above 1 and below 1000";
+  }
+  if (input.attack < 1 || input.attack > 999 || !input.attack) {
+    error.attack = "The value must be a number above 1 and below 1000";
+  }
+  if (input.height < 1 || !input.height) {
+    error.height = "The value must be a number above 1";
+  }
+  if (input.weight < 1 || !input.weight) {
+    error.weight = "The value must be a number above 1";
+  }
+  if (input.defense < 1 || input.defense > 999 || !input.defense) {
+    error.defense = "The value must be a number above 1 and below 1000";
+  }
+  if (input.speed < 1 || input.speed > 999 || !input.speed) {
+    error.speed = "The value must be a number above 1 and below 1000";
+  }
+  if (input.types.length < 1 || input.types.length > 2 || !input.types) {
+    error.types = "Select less than two types and at least one type";
+  }
+  return error;
+}
 const Creator = () => {
   const dispatch = useDispatch();
   const types = useSelector((state) => state.types);
@@ -21,34 +49,6 @@ const Creator = () => {
   useEffect(() => {
     dispatch(getTypes());
   }, [dispatch]);
-  function validateForms(input) {
-    let error = {};
-    if (!input.name || input.name.length < 1) {
-      error.name = "Name required";
-    }
-    if (input.HP < 1 || input.HP > 999 || !input.HP) {
-      error.HP = "HP must be above 1 and below 1000";
-    }
-    if (input.attack < 1 || input.attack > 999 || !input.attack) {
-      error.attack = "The value must be a number above 1 and below 1000";
-    }
-    if (input.height < 1 || !input.height) {
-      error.height = "The value must be a number above 1";
-    }
-    if (input.weight < 1 || !input.weight) {
-      error.weight = "The value must be a number above 1";
-    }
-    if (input.speed < 1 || input.speed > 999 || !input.speed) {
-      error.speed = "The value must be a number above 1 and below 1000";
-    }
-    if (input.defense < 1 || input.defense > 999 || !input.defense) {
-      error.defense = "The value must be a number above 1 and below 1000";
-    }
-    if (input.types.length < 1 || input.types.length > 2 || !input.types) {
-      error.types = "Select less than two types and at least one type";
-    }
-    return error;
-  }
 
   const handleChange = (e) => {
     setInput({
@@ -58,13 +58,9 @@ const Creator = () => {
     setError(validateForms({ ...input, [e.target.name]: e.target.value }));
   };
   const handleSelect = (e) => {
-    if (!input.types.includes(e.target.value)) {
-      setInput({
-        types: [...input.types, e.target.value],
-      });
-    } else {
-      setInput({ ...input });
-    }
+    setInput({
+      types: [...input.types, e.target.value],
+    });
   };
   const handleDelete = (e) => {
     setInput({
@@ -78,24 +74,29 @@ const Creator = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPoke(input));
-    alert("GO TO THE TALL GRASS");
-    setInput({
-      name: "",
-      HP: "",
-      attack: "",
-      height: "",
-      weight: "",
-      defense: "",
-      speed: "",
-      types: [],
-    });
+    if (Object.keys(error).length) {
+      alert("Please fix or fill the fields");
+    } else {
+      dispatch(createPoke(input));
+      setInput({
+        name: "",
+        HP: "",
+        attack: "",
+        height: "",
+        weight: "",
+        defense: "",
+        speed: "",
+        types: [],
+      });
+      alert("POKEMON CREATED SUCCESFULLY");
+    }
   };
 
   if (types) {
     return (
       <div className="creatorContainer">
         <h1>CREATE YOUR POKEMON</h1>
+        <pre>{JSON.stringify(input)}</pre>
         <form className="formCon" onSubmit={(e) => handleSubmit(e)}>
           <label>
             NAME
@@ -182,12 +183,15 @@ const Creator = () => {
               onChange={(e) => handleSelect(e)}
               id="typeSelection"
             >
-              <option value={null}>-</option>
-              {types?.map((el) => (
-                <option key={el.id} value={el.name}>
-                  {el.name}
-                </option>
-              ))}
+              {types.length ? (
+                types.map((el) => (
+                  <option key={el.id} value={el.name}>
+                    {el.name}
+                  </option>
+                ))
+              ) : (
+                <span>Loading...</span>
+              )}
             </select>
             {input.types.length > 0 && (
               <div className="selectedTypes" key="selectedTypes">
@@ -205,16 +209,8 @@ const Creator = () => {
             )}
             {error.types && <p className="error">{error.types}</p>}
           </label>
-          {Object.keys(error).length || input.length > 0 ? null : (
-            <button
-              className="sendButton"
-              disabled={Object.keys(error).length}
-              // type={
-              //   Object.keys(error).length || Object.keys(!error)
-              //     ? "none"
-              //     : "submit"
-              // }
-            >
+          {Object.keys(error).length ? null : (
+            <button className="sendButton" disabled={Object.keys(error).length}>
               SEND
             </button>
           )}
