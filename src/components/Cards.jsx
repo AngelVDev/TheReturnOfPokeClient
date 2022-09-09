@@ -31,6 +31,7 @@ const Cards = ({ currentPokes }) => {
                 style={{
                   textDecoration: "none",
                   color: "#e3e3e3",
+                  textShadow: "0px 0px 2px #acacac",
                   zIndex: "2",
                   fontSize: "x-large",
                 }}
