@@ -97,7 +97,7 @@ export function clear() {
 export function deleteById(id) {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`/${id}/delete`);
+      const json = await axios.get(`/pokemons/${id}/delete`);
       return dispatch({ type: "DELETE_BY_ID", payload: json.data });
     } catch (err) {
       console.log(err);
