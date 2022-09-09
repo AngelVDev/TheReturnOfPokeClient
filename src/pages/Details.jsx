@@ -4,7 +4,8 @@ import { useHistory } from "react-router-dom";
 import Loader from "./Loader";
 import { clear, deleteById, getDetails } from "../redux/actions";
 import { missingno } from "../components/Cards";
-// import "../styles/pages.css";
+import "../styles/pages.css";
+import colors from "../styles/colors.js";
 
 const Details = ({ match }) => {
   const dispatch = useDispatch();
@@ -12,6 +13,11 @@ const Details = ({ match }) => {
   const history = useHistory();
   const poke = useSelector((state) => state.pokeDetail);
   const regex = new RegExp("[a-z]");
+  const bGcolour = (poketypen) => {
+    if (colors.hasOwnProperty(poketypen)) {
+      return { backgroundColor: colors[poketypen] };
+    }
+  };
 
   useEffect(() => {
     dispatch(clear());
@@ -50,8 +56,12 @@ const Details = ({ match }) => {
             <p className="types" alt="types">
               <b>Types: </b>
               {poke.types.map((e) => (
-                <span className="typeSpan" key={poke.id + e.name}>
-                  {e.name}
+                <span
+                  className="detailTypeSpan"
+                  style={bGcolour(e.name)}
+                  key={poke.id + e.name}
+                >
+                  {e.name.toUpperCase()}
                 </span>
               ))}
             </p>
