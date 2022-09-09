@@ -112,67 +112,73 @@ const Creator = () => {
           <label>
             HP:
             <input
+              className="inputStyle"
               type="number"
               value={input.HP}
               name="HP"
               onChange={(e) => handleChange(e)}
             />
-            {error.HP && <p>{error.HP} </p>}
+            {error.HP && <p className="error">{error.HP} </p>}
           </label>
 
           <label>
             Attack:
             <input
+              className="inputStyle"
               type="number"
               value={input.attack}
               name="attack"
               onChange={(e) => handleChange(e)}
             />
-            {error.attack && <p>{error.attack} </p>}
+            {error.attack && <p className="error">{error.attack} </p>}
           </label>
 
           <label>
             Height:
             <input
+              className="inputStyle"
               type="number"
               value={input.height}
               name="height"
               onChange={(e) => handleChange(e)}
             />
-            {error.height && <p>{error.height} </p>}
+            {error.height && <p className="error">{error.height} </p>}
           </label>
 
           <label>
             Weight:
             <input
+              className="inputStyle"
               type="number"
               value={input.weight}
               name="weight"
               onChange={(e) => handleChange(e)}
             />
-            {error.weight && <p>{error.weight} </p>}
+            {error.weight && <p className="error">{error.weight} </p>}
           </label>
 
           <label>
             Speed:
             <input
+              className="inputStyle"
               type="number"
               value={input.speed}
               name="speed"
               onChange={(e) => handleChange(e)}
             />
-            {error.speed && <p>{error.speed} </p>}
+            {error.speed && <p className="error">{error.speed} </p>}
           </label>
 
           <label>
             Defense:
             <input
+              className="inputStyle"
               type="number"
               value={input.defense}
               name="defense"
               onChange={(e) => handleChange(e)}
             />
-            {error.defense && <p>{error.defense} </p>}
+            {error.defense && <p className="error">{error.defense} </p>}
           </label>
 
           <label>
@@ -190,7 +196,7 @@ const Creator = () => {
                   </option>
                 ))
               ) : (
-                <span>Loading...</span>
+                <option>Loading...</option>
               )}
             </select>
             {input.types.length > 0 && (

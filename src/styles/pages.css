@@ -3,3 +3,26 @@
   justify-items: center;
   background-image: url("https://assets.pokemon.com/static2/_ui/img/chrome/body_bg.png");
 }
+.creatorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.formCon {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Power Green";
+}
+.inputStyle {
+  margin-left: 0.5vw;
+  margin-bottom: 0.7vh;
+}
+.error {
+  font-weight: 800;
+  color: brown;
+}
