@@ -11,16 +11,27 @@ const SearchBar = () => {
     setName(e.target.value);
     dispatch(getQPokes(name));
   };
-
+  let handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getQPokes(name));
+    setName("");
+  };
   return (
     <div>
       <input
+        value={name}
         className="searchInput"
         type="text"
         placeholder="Type here..."
         onChange={(e) => handleInputChange(e)}
       />
-      <button className="searchButton">Search</button>
+      <button
+        className="searchButton"
+        type="submit"
+        onClick={(e) => handleSubmit(e)}
+      >
+        Search
+      </button>
     </div>
   );
 };
