@@ -5,8 +5,13 @@ import { createPoke, getTypes } from "../redux/actions";
 
 function validateForms(input) {
   let error = {};
-  if (!input.name || input.name.length < 1) {
-    error.name = "Name required";
+  const regex = new RegExp(/(https?:\/\/.*\.(?:png))/i);
+
+  if (!input.name.length || input.name.length < 1 || input.name.length > 12) {
+    error.name = "Name required (Max of 12 characters)";
+  }
+  if (input.image.length && regex.test(input.image) === false) {
+    error.image = "Format your image to PNG, preferably without background";
   }
   if (input.HP < 1 || input.HP > 999 || !input.HP) {
     error.HP = "HP must be above 1 and below 1000";
@@ -26,7 +31,11 @@ function validateForms(input) {
   if (input.speed < 1 || input.speed > 999 || !input.speed) {
     error.speed = "The value must be a number above 1 and below 1000";
   }
-  if (input.types.length < 1 || input.types.length > 2 || !input.types) {
+  if (
+    input.types.length === 0 ||
+    input.types.length > 2 ||
+    !input.types.length
+  ) {
     error.types = "Select less than two types and at least one type";
   }
   return error;
@@ -41,6 +50,7 @@ const Creator = () => {
     HP: "",
     attack: "",
     height: "",
+    image: "",
     weight: "",
     defense: "",
     speed: "",
@@ -58,15 +68,22 @@ const Creator = () => {
     setError(validateForms({ ...input, [e.target.name]: e.target.value }));
   };
   const handleSelect = (e) => {
-    setInput({
-      types: [...input.types, e.target.value],
-    });
+    setInput({ ...input, types: [...input.types, e.target.value] });
+    setError(
+      validateForms({ ...input, types: [...input.types, e.target.value] })
+    );
   };
   const handleDelete = (e) => {
     setInput({
       ...input,
       types: input.types.filter((t) => t !== e),
     });
+    setError(
+      validateForms({
+        ...input,
+        types: input.types.filter((t) => t !== e),
+      })
+    );
   };
 
   const handleClick = () => {
@@ -74,7 +91,7 @@ const Creator = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (Object.keys(error).length) {
+    if (Object.keys(error).length || input.length === undefined) {
       alert("Please fix or fill the fields");
     } else {
       dispatch(createPoke(input));
@@ -86,6 +103,7 @@ const Creator = () => {
         weight: "",
         defense: "",
         speed: "",
+        image: "",
         types: [],
       });
       alert("POKEMON CREATED SUCCESFULLY");
@@ -96,7 +114,7 @@ const Creator = () => {
     return (
       <div className="creatorContainer">
         <h1>CREATE YOUR POKEMON</h1>
-        <pre>{JSON.stringify(input)}</pre>
+        {/* <pre>{JSON.stringify(input)}</pre> */}
         <form className="formCon" onSubmit={(e) => handleSubmit(e)}>
           <label>
             NAME
@@ -105,9 +123,21 @@ const Creator = () => {
               onChange={(e) => handleChange(e)}
               name="name"
               value={input.name}
+              required
               type="text"
             />
             {error.name && <p className="error">{error.name} </p>}
+          </label>
+          <label>
+            IMAGE
+            <input
+              className="inputStyle"
+              onChange={(e) => handleChange(e)}
+              name="image"
+              value={input.image}
+              type="text"
+            />
+            {error.image && <p className="error">{error.image} </p>}
           </label>
           <label>
             HP:
@@ -115,6 +145,7 @@ const Creator = () => {
               className="inputStyle"
               type="number"
               value={input.HP}
+              required
               name="HP"
               onChange={(e) => handleChange(e)}
             />
@@ -126,6 +157,7 @@ const Creator = () => {
             <input
               className="inputStyle"
               type="number"
+              required
               value={input.attack}
               name="attack"
               onChange={(e) => handleChange(e)}
@@ -140,6 +172,7 @@ const Creator = () => {
               type="number"
               value={input.height}
               name="height"
+              required
               onChange={(e) => handleChange(e)}
             />
             {error.height && <p className="error">{error.height} </p>}
@@ -152,6 +185,7 @@ const Creator = () => {
               type="number"
               value={input.weight}
               name="weight"
+              required
               onChange={(e) => handleChange(e)}
             />
             {error.weight && <p className="error">{error.weight} </p>}
@@ -165,6 +199,7 @@ const Creator = () => {
               value={input.speed}
               name="speed"
               onChange={(e) => handleChange(e)}
+              required
             />
             {error.speed && <p className="error">{error.speed} </p>}
           </label>
@@ -177,6 +212,7 @@ const Creator = () => {
               value={input.defense}
               name="defense"
               onChange={(e) => handleChange(e)}
+              required
             />
             {error.defense && <p className="error">{error.defense} </p>}
           </label>
@@ -188,6 +224,7 @@ const Creator = () => {
               name="types"
               onChange={(e) => handleSelect(e)}
               id="typeSelection"
+              required
             >
               {types.length ? (
                 types.map((el) => (
@@ -201,7 +238,7 @@ const Creator = () => {
             </select>
             {input.types.length > 0 && (
               <div className="selectedTypes" key="selectedTypes">
-                <label>Selected types:</label>
+                <label>Your selection:</label>
                 {input.types.map((e) => (
                   <button
                     className="typeButton"
@@ -215,7 +252,7 @@ const Creator = () => {
             )}
             {error.types && <p className="error">{error.types}</p>}
           </label>
-          {Object.keys(error).length ? null : (
+          {Object.keys(error).length || input.length === undefined ? null : (
             <button className="sendButton" disabled={Object.keys(error).length}>
               SEND
             </button>
