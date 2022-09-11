@@ -10,12 +10,6 @@ export function getPokemons() {
     });
   };
 }
-export function getTypes() {
-  return async function (dispatch) {
-    let json = await axios.get("/types", {});
-    dispatch({ type: "GET_TYPES", payload: json.data });
-  };
-}
 export function getQPokes(name) {
   return async function (dispatch) {
     try {
@@ -29,15 +23,6 @@ export function getQPokes(name) {
     }
   };
 }
-export function getFiltered(payload) {
-  return async function (dispatch) {
-    return dispatch({
-      type: "GET_FILTERED",
-      payload: payload,
-    });
-  };
-}
-
 export function getDetails(id) {
   return async function (dispatch) {
     var json = await axios.get("/pokemons/" + id);
@@ -47,6 +32,21 @@ export function getDetails(id) {
     });
   };
 }
+export function getTypes() {
+  return async function (dispatch) {
+    let json = await axios.get("/types", {});
+    dispatch({ type: "GET_TYPES", payload: json.data });
+  };
+}
+export function getFiltered(payload) {
+  return async function (dispatch) {
+    return dispatch({
+      type: "GET_FILTERED",
+      payload: payload,
+    });
+  };
+}
+
 export let createPoke = (payload) => {
   return async (dispatch) => {
     try {
