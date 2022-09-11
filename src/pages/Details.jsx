@@ -76,6 +76,7 @@ const Details = ({ match }) => {
           </div>
           <img
             className="pokePik"
+            style={poke.image ? null : { height: "auto", maxHeight: "30vh" }}
             src={poke.image ? poke.image : missingno}
             alt="pokemon"
           />
