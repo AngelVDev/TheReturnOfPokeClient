@@ -20,6 +20,9 @@
   z-index: 0;
   border: 7px double rgba(255, 255, 255, 0.19);
 }
+.card:last-child {
+  margin-bottom: 3em;
+}
 .cardInfo {
   display: flex;
   justify-content: center;
@@ -70,6 +73,9 @@
   background-color: #9d75d1;
   border-radius: 0 8vw 0 8vw;
   border: 6px double rgb(134, 81, 184);
+  color: white;
+  font-weight: 600;
+  text-shadow: -2px 0px 3px rgba(100, 231, 255, 0.88), 2px 0px 3px #ff0046;
 }
 
 .headerSelect {
@@ -77,6 +83,7 @@
   color: black;
   font-size: large;
   margin-left: 0.4vw;
+  margin-right: 0.4vw;
   font-weight: 900;
   font-family: "Power Green";
   height: 4.5vh;
@@ -113,7 +120,6 @@
   background: #afaab1;
   box-shadow: 0px 0px 2px 3px rgb(219, 219, 219);
   border-radius: 2vw 0 2vw 0;
-  margin-bottom: 3vh;
   margin-top: 5vh;
   padding-left: 1vw;
   padding-right: 1vw;

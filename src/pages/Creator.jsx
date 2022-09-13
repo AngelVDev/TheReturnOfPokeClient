@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createPoke, getTypes } from "../redux/actions";
-
+import colors from "../styles/colors";
+import colorsAux from "../styles/colorsAux";
 function validateForms(input) {
   let error = {};
   const regex = new RegExp(/(https?:\/\/.*\.(?:png))/i);
@@ -40,6 +41,18 @@ function validateForms(input) {
   }
   return error;
 }
+
+const bGcolour = (poketypen) => {
+  if (colors.hasOwnProperty(poketypen)) {
+    return { backgroundColor: colors[poketypen] };
+  }
+};
+const typeImg = (pokeimg) => {
+  if (colorsAux.hasOwnProperty(pokeimg)) {
+    return colorsAux[pokeimg];
+  }
+};
+
 const Creator = () => {
   const dispatch = useDispatch();
   const types = useSelector((state) => state.types);
@@ -91,7 +104,7 @@ const Creator = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (Object.keys(error).length || input.length === undefined) {
+    if (Object.keys(error).length || input === undefined) {
       alert("Please fix or fill the fields");
     } else {
       dispatch(createPoke(input));
@@ -113,7 +126,7 @@ const Creator = () => {
   if (types) {
     return (
       <div className="creatorContainer">
-        <h1>CREATE YOUR POKEMON</h1>
+        <h1 className="creatorTitle">CREATE YOUR POKEMON</h1>
         {/* <pre>{JSON.stringify(input)}</pre> */}
         <form className="formCon" onSubmit={(e) => handleSubmit(e)}>
           <label>
@@ -218,7 +231,7 @@ const Creator = () => {
           </label>
 
           <label>
-            TYPES
+            TYPES:
             <select
               className="inputStyle"
               name="types"
@@ -228,8 +241,8 @@ const Creator = () => {
             >
               {types.length ? (
                 types.map((el) => (
-                  <option key={el.id} value={el.name}>
-                    {el.name}
+                  <option style={bGcolour(el.name)} key={el.id} value={el.name}>
+                    {el.name.toUpperCase()}
                   </option>
                 ))
               ) : (
@@ -245,14 +258,21 @@ const Creator = () => {
                     key={e + "Key"}
                     onClick={() => handleDelete(e)}
                   >
-                    {e} x
+                    {
+                      <img
+                        src={typeImg(e)}
+                        style={{ marginRight: "0.5vw", height: "23px" }}
+                        alt={e}
+                      />
+                    }{" "}
+                    x
                   </button>
                 ))}
               </div>
             )}
             {error.types && <p className="error">{error.types}</p>}
           </label>
-          {Object.keys(error).length || input.length === undefined ? null : (
+          {Object.keys(error).length || !input ? null : (
             <button className="sendButton" disabled={Object.keys(error).length}>
               SEND
             </button>
