@@ -62,6 +62,21 @@
   text-shadow: 0px 0px 3px #dfdfdf86;
   z-index: 2;
 }
+.noCardCard {
+  display: flex;
+  margin-left: 1.4em;
+  margin-top: 3em;
+  height: 62.3vh;
+  width: 27vw;
+  padding: 1.8rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  background-color: none;
+  border: none;
+  color: white;
+}
 .filterContainer {
   display: flex;
   flex-wrap: wrap;
