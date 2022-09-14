@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getPokemons } from "../redux/actions";
 import { Link } from "react-router-dom";
-import Loader from "../pages/Loader";
 import "../styles/components.css";
 import colors from "../styles/colors.js";
 export let missingno =
@@ -16,10 +15,12 @@ const Cards = ({ currentPokes }) => {
       return { backgroundColor: colors[poketypen] };
     }
   };
+
   useEffect(() => {
     dispatch(getPokemons());
   }, [dispatch]);
-  if (currentPokes) {
+
+  if (currentPokes.length > 1) {
     return (
       <>
         {currentPokes?.map((p) => (
@@ -56,7 +57,11 @@ const Cards = ({ currentPokes }) => {
       </>
     );
   } else {
-    return <Loader />;
+    return (
+      <div className="noCardCard">
+        <h2>There's no pokemon with that type or name</h2>
+      </div>
+    );
   }
 };
 export default Cards;
