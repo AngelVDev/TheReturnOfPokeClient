@@ -1,6 +1,46 @@
 .bgLanding {
   height: 100vh;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+}
+.pokeLogo {
+  position: fixed;
+  max-width: 35%;
+  margin: -30vh;
+  z-index: 1;
+}
+.h2Landing {
+  color: white;
+  z-index: 1;
+  position: fixed;
+  font-weight: 400;
+  text-shadow: 2px 3px 3px #9e9e9e, 0px 3px 6px #05002b;
+  margin-bottom: 26vh;
+}
+.landingVideo {
+  height: 60%;
+  padding: 10px;
+  box-shadow: -6px 5px 5px 1px rgba(13, 0, 76, 0.68);
+  border-radius: 0 4vw 0 4vw;
+  background-color: rgba(255, 254, 253, 0.233);
+  z-index: 0;
+}
+.landingBtn {
+  padding: 9px;
+  background-color: #a500bb;
+  color: white;
+  border: none;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: larger;
+  position: absolute;
+  font-weight: 800;
+  border-radius: 11px 0 11px 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .homeDiv {
