@@ -153,6 +153,31 @@ const Creator = () => {
             {error.image && <p className="error">{error.image} </p>}
           </label>
           <label>
+            Height:
+            <input
+              className="inputStyle"
+              type="number"
+              value={input.height}
+              name="height"
+              required
+              onChange={(e) => handleChange(e)}
+            />
+            {error.height && <p className="error">{error.height} </p>}
+          </label>
+
+          <label>
+            Weight:
+            <input
+              className="inputStyle"
+              type="number"
+              value={input.weight}
+              name="weight"
+              required
+              onChange={(e) => handleChange(e)}
+            />
+            {error.weight && <p className="error">{error.weight} </p>}
+          </label>
+          <label>
             HP:
             <input
               className="inputStyle"
@@ -179,31 +204,17 @@ const Creator = () => {
           </label>
 
           <label>
-            Height:
+            Defense:
             <input
               className="inputStyle"
               type="number"
-              value={input.height}
-              name="height"
-              required
+              value={input.defense}
+              name="defense"
               onChange={(e) => handleChange(e)}
-            />
-            {error.height && <p className="error">{error.height} </p>}
-          </label>
-
-          <label>
-            Weight:
-            <input
-              className="inputStyle"
-              type="number"
-              value={input.weight}
-              name="weight"
               required
-              onChange={(e) => handleChange(e)}
             />
-            {error.weight && <p className="error">{error.weight} </p>}
+            {error.defense && <p className="error">{error.defense} </p>}
           </label>
-
           <label>
             Speed:
             <input
@@ -215,19 +226,6 @@ const Creator = () => {
               required
             />
             {error.speed && <p className="error">{error.speed} </p>}
-          </label>
-
-          <label>
-            Defense:
-            <input
-              className="inputStyle"
-              type="number"
-              value={input.defense}
-              name="defense"
-              onChange={(e) => handleChange(e)}
-              required
-            />
-            {error.defense && <p className="error">{error.defense} </p>}
           </label>
 
           <label>
