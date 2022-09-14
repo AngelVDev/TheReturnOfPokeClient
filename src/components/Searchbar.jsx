@@ -6,10 +6,10 @@ import { getQPokes } from "../redux/actions";
 const SearchBar = () => {
   let dispatch = useDispatch();
   let [name, setName] = useState("");
+
   let handleInputChange = (e) => {
     e.preventDefault();
     setName(e.target.value);
-    dispatch(getQPokes(name));
   };
   let handleSubmit = (e) => {
     e.preventDefault();
