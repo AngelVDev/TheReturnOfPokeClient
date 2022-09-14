@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { createPoke, getTypes } from "../redux/actions";
 import colors from "../styles/colors";
 import colorsAux from "../styles/colorsAux";
+import Loader from "./Loader";
 function validateForms(input) {
   let error = {};
   const regex = new RegExp(/(https?:\/\/.*\.(?:png))/i);
@@ -123,7 +124,7 @@ const Creator = () => {
     }
   };
 
-  if (types) {
+  if (types.length) {
     return (
       <div className="creatorContainer">
         <h1 className="creatorTitle">CREATE YOUR POKEMON</h1>
@@ -282,7 +283,7 @@ const Creator = () => {
       </div>
     );
   } else {
-    return <div>NOTHING HERE, BRO</div>;
+    return <Loader />;
   }
 };
 
